@@ -6,18 +6,19 @@ const app = express();
 const port = 5000;
 app.use(cors());
 
+// Connect to MongoDB
 const mongoUrl = 'mongodb+srv://login:test123@cluster0.ayowtk8.mongodb.net/mealPlanItems?retryWrites=true&w=majority';
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
-  console.log('Connecté à la base de données MongoDB');
+  console.log('Connected to mongodb');
 }).catch((err) => {
-  console.error('Erreur de connexion à MongoDB:', err);
+  console.error('Error connecting to mongodb', err);
 });
 
-// Modèle de données pour les repas
+// Define meal schema
 const mealSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String },
@@ -29,7 +30,7 @@ const Meal = mongoose.model('Meal', mealSchema);
 
 app.use(express.json());
 
-// Routes CRUD
+// Create a new meal
 app.post('/meals', (req, res) => {
   const { name, description, calories } = req.body;
   const newMeal = new Meal({ name, description, calories });
@@ -37,20 +38,22 @@ app.post('/meals', (req, res) => {
   newMeal.save().then((meal) => {
     res.status(201).json(meal);
   }).catch((err) => {
-    res.status(500).json({ message: 'Erreur lors de la création du repas.', error: err });
+    res.status(500).json({ message: 'Error during creation of the meal', error: err });
   });
 });
 
+// Retrieve all meals
 app.get('/meals', (req, res) => {
   Meal.find()
     .then((meals) => {
       res.status(200).json(meals);
     })
     .catch((err) => {
-      res.status(500).json({ message: 'Erreur lors de la récupération des repas.', error: err });
+      res.status(500).json({ message: 'Error fetching meals.', error: err });
     });
 });
 
+// Update a meal
 app.put('/meals/:id', (req, res) => {
   const { name, description, calories, imageUrl } = req.body;
   const mealId = req.params.id;
@@ -60,20 +63,21 @@ app.put('/meals/:id', (req, res) => {
       res.status(200).json(updatedMeal);
     })
     .catch((err) => {
-      res.status(500).json({ message: 'Erreur lors de la mise à jour du repas.', error: err });
+      res.status(500).json({ message: 'Error updating meal', error: err });
     });
 });
 
+// Delete a meal
 app.delete('/meals/:id', (req, res) => {
   const mealId = req.params.id;
 
   Meal.findByIdAndDelete(mealId).then(() => {
-    res.status(200).json({ message: 'Repas supprimé avec succès.' });
+    res.status(200).json({ message: 'Meal deleted successfully.' });
   }).catch((err) => {
-    res.status(500).json({ message: 'Erreur lors de la suppression du repas.', error: err });
+    res.status(500).json({ message: 'Error during meal deletion', error: err });
   });
 });
 
 app.listen(port, () => {
-  console.log(`Serveur démarré sur le port ${port}`);
+  console.log(`Server started on port ${port}`);
 });
