@@ -1,0 +1,64 @@
+# MealMagic
+
+Welcome to MealMagic! Discover a variety of delicious meal plans and recipes to enhance your dining experience. Create flavorful dishes that balance taste and nutrition, making every meal a delightful experience.
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+- [API Integration](#api-integration)
+- [Sources](#sources)
+
+
+## Features
+
+- Explore a diverse selection of meal plans tailored to various dietary preferences.
+- Access an array of delectable recipes accompanied by detailed nutritional information.
+- Generate customized meal plans based on target calorie goals.
+- Easily add and manage favorite recipes for quick access.
+
+## Getting Started
+
+### Installation
+
+1. Clone the repository:
+   git clone https://github.com/EHB-MCT/web2-frontend-Anas-Baghdadi.git
+2. Run the backend 
+    open the terminal for index.js (navigate with cd)
+    install packages: npm install express cors mongodb cookie-parser uuid
+    run the node server: nodemon index.js
+    it will run at localhost:3000
+
+    open the terminal for app.js
+    install packages: npm install express mongoose cors
+    run the node server: node app.js
+    it will run at localhost:5000 
+
+    (make sure mongodb is running in the browser) 
+
+### API Integration
+
+1. Obtain an API Key:
+    To access the Spoonacular API, you'll need to sign up for an API key from their official website.
+    Once you have your API key, you can include it in the relevant parts of the code.
+    
+2. Making API Requests:
+    We use the fetch function to make API requests to the Spoonacular API endpoints.
+    The API endpoints are used to generate meal plans, retrieve recipes, and fetch nutritional information.
+    
+3. Processing API Responses:
+    The data retrieved from the API is processed and displayed to users on the application's interface.
+    Nutritional information, recipe images, and other relevant data are extracted from the API response.
+    
+4. Linking to Full Recipes:
+    Each recipe card in MealMagic provides a link to the full recipe on the Spoonacular website. This link is generated using the sourceUrl from the API response.
+
+### Sources 
+
+1. https://stackoverflow.com/
+2. https://www.w3schools.com/
+3. Youtube tutorials of teacher 
+4. https://www.freecodecamp.org/
+5. https://spoonacular.com/food-api/
+
