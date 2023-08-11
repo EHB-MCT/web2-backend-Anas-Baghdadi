@@ -8,6 +8,8 @@ const { v4: uuidv4, validate: uuidValidate } = require('uuid');
 //Create mongoclient
 const client = new MongoClient("mongodb+srv://login:test123@cluster0.ayowtk8.mongodb.net/?retryWrites=true&w=majority");
 
+const loginPort = process.env.LOGIN_PORT || 3000;
+
 app.use(express.urlencoded({extended:false}));
 app.use(cors())
 app.use(express.json())
@@ -209,5 +211,6 @@ app.post('/logout', (req, res) => {
 });
   
 
-app.listen(3000);
-console.log("app running at http://localhost:3000");
+app.listen(loginPort, () => {
+    console.log(`App running at http://localhost:${loginPort}`);
+  });
