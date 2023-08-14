@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const port = process.env.port || 1337;
+const crudPort = process.env.CRUD_PORT || 5000;
 app.use(cors());
 
 // Connect to MongoDB
@@ -78,6 +78,6 @@ app.delete('/meals/:id', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+app.listen(crudPort, () => {
+  console.log(`Server started on port ${crudPort}`);
 });
