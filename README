@@ -54,6 +54,13 @@ Welcome to MealMagic! Discover a variety of delicious meal plans and recipes to 
 4. Linking to Full Recipes:
     Each recipe card in MealMagic provides a link to the full recipe on the Spoonacular website. This link is generated using the sourceUrl from the API response.
 
+## Credentials
+
+
+username:"test10"
+email: "test10@gmail.com"
+password: "Azerty123"
+
 ### Sources 
 
 1. https://stackoverflow.com/
